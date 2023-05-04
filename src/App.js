@@ -1,6 +1,26 @@
 import React from "react";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+function Chat(){
+  const [chats, setChats] = useState([])
+  useEffect(() => {
+  fetch('https://jsonplaceholder.typicode.com/todos/1')
+      .then(response => response.json())
+      .then(json => setChats(json))
+  }, [])
+
+  console.log(chats)
+
+if (!chats?.title) {
+  return <hi1>No data</hi1>
+}
+
+  const title = chats.title
+  console.log(1, title)
+
+  return <h1>{title}</h1>
+}
 
 function Square({ value, onSquareClick }) {
   return (
@@ -91,6 +111,7 @@ export default function Game() {
       </div>
       <div className="game-info">
         <ol>{moves}</ol>
+        <Chat />
       </div>
     </div>
   );
